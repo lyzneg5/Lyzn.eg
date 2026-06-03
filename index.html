@@ -1,503 +1,96 @@
-احفظ الملف باسم **index.html** ثم افتحه في المتصفح.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lyzn.eg</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-scroll-behavior:smooth;
-}
-
-body{
-background:#111;
-color:white;
-overflow-x:hidden;
-}
-
-/* LOADER */
-
-.loader{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100vh;
-background:#111;
-display:flex;
-justify-content:center;
-align-items:center;
-z-index:9999;
-}
-
-.loader h1{
-color:#D4AF37;
-font-size:4rem;
-animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-0%{transform:scale(1);}
-50%{transform:scale(1.15);}
-100%{transform:scale(1);}
-}
-
-/* NAVBAR */
-
-nav{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-padding:20px 8%;
-background:rgba(0,0,0,.9);
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:1000;
-backdrop-filter:blur(10px);
-}
-
-.logo{
-font-size:30px;
-font-weight:bold;
-color:#D4AF37;
-}
-
-nav ul{
-display:flex;
-gap:25px;
-list-style:none;
-}
-
-nav a{
-text-decoration:none;
-color:white;
-transition:.3s;
-}
-
-nav a:hover{
-color:#D4AF37;
-}
-
-/* HERO */
-
-.hero{
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-text-align:center;
-background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
-url("https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1200");
-background-size:cover;
-background-position:center;
-}
-
-.hero h1{
-font-size:65px;
-color:#D4AF37;
-margin-bottom:15px;
-}
-
-.hero p{
-font-size:22px;
-margin-bottom:30px;
-}
-
-.shop-btn{
-padding:15px 35px;
-border:none;
-border-radius:50px;
-background:#D4AF37;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
-transition:.4s;
-}
-
-.shop-btn:hover{
-transform:translateY(-5px);
-box-shadow:0 0 25px #D4AF37;
-}
-
-/* PRODUCTS */
-
-.products{
-padding:100px 5%;
-}
-
-.products h2{
-text-align:center;
-font-size:45px;
-margin-bottom:40px;
-color:#D4AF37;
-}
-
-.slider-container{
-position:relative;
-overflow:hidden;
-}
-
-.slider{
-display:flex;
-gap:20px;
-transition:.5s ease;
-}
-
-.card{
-min-width:300px;
-background:#1b1b1b;
-border-radius:20px;
-overflow:hidden;
-padding-bottom:20px;
-transition:.4s;
-}
-
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 25px rgba(212,175,55,.4);
-}
-
-.card img{
-width:100%;
-height:350px;
-object-fit:cover;
-transition:.6s;
-}
-
-.card:hover img{
-transform:scale(1.08);
-}
-
-.card h3{
-text-align:center;
-margin:15px 0;
-}
-
-.sizes{
-display:flex;
-justify-content:center;
-gap:10px;
-margin-bottom:15px;
-}
-
-.size{
-background:#222;
-padding:8px 12px;
-border-radius:8px;
-}
-
-.price{
-text-align:center;
-font-size:22px;
-font-weight:bold;
-color:#D4AF37;
-margin-bottom:15px;
-}
-
-.order-btn{
-display:block;
-margin:auto;
-padding:12px 25px;
-border:none;
-border-radius:30px;
-background:#25D366;
-color:white;
-font-weight:bold;
-cursor:pointer;
-transition:.4s;
-animation:glow 2s infinite;
-}
-
-.order-btn:hover{
-transform:translateY(-4px);
-}
-
-@keyframes glow{
-0%{box-shadow:0 0 5px #25D366;}
-50%{box-shadow:0 0 20px #25D366;}
-100%{box-shadow:0 0 5px #25D366;}
-}
-
-.arrow{
-position:absolute;
-top:45%;
-transform:translateY(-50%);
-width:55px;
-height:55px;
-border:none;
-border-radius:50%;
-background:#D4AF37;
-font-size:22px;
-font-weight:bold;
-cursor:pointer;
-z-index:10;
-}
-
-.left{
-left:0;
-}
-
-.right{
-right:0;
-}
-
-/* FOOTER */
-
-footer{
-padding:30px;
-text-align:center;
-background:black;
-margin-top:70px;
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-.hero h1{
-font-size:45px;
-}
-
-nav ul{
-display:none;
-}
-
-.card{
-min-width:250px;
-}
-
-}
-
-</style>
+<title>
+   Lyzn.eg
+</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<div class="loader">
+<!-- LOADING -->
+<div id="loader">
 <h1>Lyzn.eg</h1>
 </div>
 
+<!-- NAV -->
 <nav>
-<div class="logo">Lyzn.eg</div>
-
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#products">Collection</a></li>
-<li><a href="#">About</a></li>
-<li><a href="#">Contact</a></li>
-</ul>
+<div class="logo"> Lyzn.eg</div>
+<a href="cart.html" class="cart">🛒 <span id="cartCount">0</span></a>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-
-<h1>Lyzn.eg</h1>
-
-<p>Premium Streetwear Collection</p>
-
-<a href="#products">
-<button class="shop-btn">Shop Now</button>
-</a>
-
+<h1>Premium Streetwear</h1>
+<p>Lyzn.eg Collection</p>
 </section>
 
-<section class="products" id="products">
+<!-- PRODUCTS -->
+<section class="container">
 
-<h2>Our Collection</h2>
-
-<div class="slider-container">
-
-<button class="arrow left" onclick="moveLeft()">❮</button>
+<button class="arrow left" onclick="scrollLeft()">❮</button>
 
 <div class="slider" id="slider">
 
-<!-- 1 -->
+<!-- 7 PRODUCTS -->
 <div class="card">
 <img src="https://picsum.photos/400/500?1">
 <h3>Classic Tee</h3>
-<div class="sizes">
-<span class="size">M</span>
-<span class="size">L</span>
-<span class="size">XL</span>
-<span class="size">2XL</span>
-</div>
 <div class="price">350 EGP</div>
-<button class="order-btn" onclick="orderProduct('Classic Tee')">Order Now</button>
+<button onclick="addToCart('Classic Tee',350)">Add to Cart</button>
 </div>
 
-<!-- 2 -->
 <div class="card">
 <img src="https://picsum.photos/400/500?2">
 <h3>Oversized Tee</h3>
-<div class="sizes">
-<span class="size">M</span>
-<span class="size">L</span>
-<span class="size">XL</span>
-<span class="size">2XL</span>
-</div>
 <div class="price">400 EGP</div>
-<button class="order-btn" onclick="orderProduct('Oversized Tee')">Order Now</button>
+<button onclick="addToCart('Oversized Tee',400)">Add to Cart</button>
 </div>
 
-<!-- 3 -->
 <div class="card">
 <img src="https://picsum.photos/400/500?3">
 <h3>Black Hoodie</h3>
-<div class="sizes">
-<span class="size">M</span>
-<span class="size">L</span>
-<span class="size">XL</span>
-<span class="size">2XL</span>
-</div>
 <div class="price">650 EGP</div>
-<button class="order-btn" onclick="orderProduct('Black Hoodie')">Order Now</button>
+<button onclick="addToCart('Black Hoodie',650)">Add to Cart</button>
 </div>
 
-<!-- 4 -->
 <div class="card">
 <img src="https://picsum.photos/400/500?4">
 <h3>Cargo Pants</h3>
-<div class="sizes">
-<span class="size">M</span>
-<span class="size">L</span>
-<span class="size">XL</span>
-<span class="size">2XL</span>
-</div>
 <div class="price">550 EGP</div>
-<button class="order-btn" onclick="orderProduct('Cargo Pants')">Order Now</button>
+<button onclick="addToCart('Cargo Pants',550)">Add to Cart</button>
 </div>
 
-<!-- 5 -->
 <div class="card">
 <img src="https://picsum.photos/400/500?5">
 <h3>Summer Shirt</h3>
-<div class="sizes">
-<span class="size">M</span>
-<span class="size">L</span>
-<span class="size">XL</span>
-<span class="size">2XL</span>
-</div>
 <div class="price">450 EGP</div>
-<button class="order-btn" onclick="orderProduct('Summer Shirt')">Order Now</button>
+<button onclick="addToCart('Summer Shirt',450)">Add to Cart</button>
 </div>
 
-<!-- 6 -->
 <div class="card">
 <img src="https://picsum.photos/400/500?6">
-<h3>Streetwear Set</h3>
-<div class="sizes">
-<span class="size">M</span>
-<span class="size">L</span>
-<span class="size">XL</span>
-<span class="size">2XL</span>
-</div>
+<h3>Street Set</h3>
 <div class="price">700 EGP</div>
-<button class="order-btn" onclick="orderProduct('Streetwear Set')">Order Now</button>
+<button onclick="addToCart('Street Set',700)">Add to Cart</button>
 </div>
 
-<!-- 7 -->
 <div class="card">
 <img src="https://picsum.photos/400/500?7">
 <h3>Premium Hoodie</h3>
-<div class="sizes">
-<span class="size">M</span>
-<span class="size">L</span>
-<span class="size">XL</span>
-<span class="size">2XL</span>
-</div>
 <div class="price">750 EGP</div>
-<button class="order-btn" onclick="orderProduct('Premium Hoodie')">Order Now</button>
+<button onclick="addToCart('Premium Hoodie',750)">Add to Cart</button>
 </div>
 
 </div>
 
-<button class="arrow right" onclick="moveRight()">❯</button>
-
-</div>
+<button class="arrow right" onclick="scrollRight()">❯</button>
 
 </section>
 
-<footer>
-© 2026 Lyzn.eg - All Rights Reserved
-</footer>
-
-<script>
-
-window.addEventListener("load",()=>{
-setTimeout(()=>{
-document.querySelector(".loader").style.display="none";
-},2000);
-});
-
-function orderProduct(product){
-window.open(
-`https://wa.me/201080871601?text=Hello I want to order ${product}`,
-'_blank'
-);
-}
-
-let slider=document.getElementById("slider");
-let scrollAmount=0;
-
-function moveRight(){
-
-const maxScroll=
-slider.scrollWidth-
-slider.parentElement.offsetWidth;
-
-scrollAmount+=320;
-
-if(scrollAmount>maxScroll){
-scrollAmount=maxScroll;
-}
-
-slider.style.transform=
-`translateX(-${scrollAmount}px)`;
-}
-
-function moveLeft(){
-
-scrollAmount-=320;
-
-if(scrollAmount<0){
-scrollAmount=0;
-}
-
-slider.style.transform=
-`translateX(-${scrollAmount}px)`;
-}
-
-/* Auto Slider */
-
-setInterval(()=>{
-
-const maxScroll=
-slider.scrollWidth-
-slider.parentElement.offsetWidth;
-
-scrollAmount+=320;
-
-if(scrollAmount>maxScroll){
-scrollAmount=0;
-}
-
-slider.style.transform=
-`translateX(-${scrollAmount}px)`;
-
-},4000);
-
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
-```
