@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cart - Lyzn.eg</title>
+<title>Cart</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,7 +20,14 @@
 
 <h2 id="total"></h2>
 
-<button onclick="checkout()">Checkout via WhatsApp</button>
+<div class="payment">
+<h3>Payment Method</h3>
+
+<button onclick="setPayment('Vodafone Cash')">Vodafone Cash</button>
+<button onclick="setPayment('InstaPay')">InstaPay</button>
+</div>
+
+<button class="checkout" onclick="checkout()">Checkout via WhatsApp</button>
 
 <script src="script.js"></script>
 </body>
