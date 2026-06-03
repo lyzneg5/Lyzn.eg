@@ -1,85 +1,127 @@
-// تحميل السلة من localStorage
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let paymentMethod = "Vodafone Cash";
+
+/* =========================
+   LOADER FIX (مهم جدًا)
+========================= */
+window.addEventListener("DOMContentLoaded", () => {
+setTimeout(() => {
+let loader = document.getElementById("loader");
+
+if(loader){
+loader.style.opacity = "0";
+loader.style.transition = "0.5s";
+
+setTimeout(()=>{
+loader.style.display = "none";
+},500);
+}
+
+}, 800);
+});
 
 /* =========================
    ADD TO CART
 ========================= */
-function addToCart(name, price) {
-cart.push({ name, price });
+function addToCart(name, price){
+cart.push({name, price});
 localStorage.setItem("cart", JSON.stringify(cart));
-updateCartCount();
-alert(name + " added to cart");
+updateCount();
 }
 
 /* =========================
-   CART COUNT
+   UPDATE COUNT
 ========================= */
-function updateCartCount() {
-let count = document.getElementById("cartCount");
-if (count) {
-count.innerText = cart.length;
+function updateCount(){
+let el = document.getElementById("cartCount");
+if(el){
+el.innerText = cart.length;
 }
+}
+updateCount();
+
+/* =========================
+   SLIDER
+========================= */
+let slider = document.getElementById("slider");
+
+function scrollRight(){
+slider.scrollLeft += 300;
+}
+
+function scrollLeft(){
+slider.scrollLeft -= 300;
 }
 
 /* =========================
-   RENDER CART PAGE
+   RENDER CART
 ========================= */
-function renderCart() {
+function renderCart(){
 let container = document.getElementById("cartItems");
-if (!container) return;
+if(!container) return;
 
-container.innerHTML = "";
 let total = 0;
+container.innerHTML = "";
 
-cart.forEach((item, index) => {
-let div = document.createElement("div");
-div.className = "item";
-
-div.innerHTML = `
+cart.forEach(item=>{
+container.innerHTML += `
+<div style="
+display:flex;
+justify-content:space-between;
+background:#1a1a1a;
+margin:10px;
+padding:10px;
+border-radius:8px;">
 <span>${item.name}</span>
 <span>${item.price} EGP</span>
+</div>
 `;
-
-container.appendChild(div);
 total += item.price;
 });
 
-document.getElementById("total").innerText =
-"Total: " + total + " EGP";
+let totalEl = document.getElementById("total");
+if(totalEl){
+totalEl.innerText = "Total: " + total + " EGP";
+}
+}
+renderCart();
+
+/* =========================
+   PAYMENT METHOD
+========================= */
+function setPayment(method){
+paymentMethod = method;
+alert("Payment selected: " + method);
 }
 
 /* =========================
    CHECKOUT (WHATSAPP)
 ========================= */
-function checkout() {
+function checkout(){
 
-if (cart.length === 0) {
+if(cart.length === 0){
 alert("Cart is empty");
 return;
 }
 
-let message = "Order:\n\n";
+let msg = "🛒 Order:\n\n";
 let total = 0;
 
-cart.forEach(item => {
-message += `- ${item.name} (${item.price} EGP)\n`;
-total += item.price;
+cart.forEach(i=>{
+msg += `- ${i.name} (${i.price} EGP)\n`;
+total += i.price;
 });
 
-message += "\nTotal: " + total + " EGP";
+msg += "\nTotal: " + total;
 
-message += "\n\nPayment Methods:";
-message += "\nVodafone Cash: 01026133452";
-message += "\nInstaPay: 01026133452";
+msg += "\n\nPayment Method: " + paymentMethod;
+
+msg += "\n\n💳 Payment Details:";
+msg += "\nVodafone Cash: 01026133452";
+msg += "\nInstaPay: 01026133452";
 
 window.open(
-"https://wa.me/201026133452?text=" + encodeURIComponent(message),
+"https://wa.me/201026133452?text=" + encodeURIComponent(msg),
 "_blank"
 );
 }
-
-/* =========================
-   INIT
-========================= */
-updateCartCount();
-renderCart();
